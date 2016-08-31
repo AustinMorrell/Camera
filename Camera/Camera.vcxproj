@@ -121,6 +121,7 @@
     <ClCompile Include="src\gl_core_4_4.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="src\Gizmos.h" />
     <ClInclude Include="src\gl_core_4_4.h" />
   </ItemGroup>
