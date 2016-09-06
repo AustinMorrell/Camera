@@ -29,6 +29,12 @@ int App::Start()
 		return -3;
 	}
 
+	Cam.setLookAt(vec3(10, 10, 10), vec3(0), vec3(0, 1, 0));
+
+	Cam.setPerspective(glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f);
+
+	Cam.setSpeed(10);
+
 	auto major = ogl_GetMajorVersion();
 	auto minor = ogl_GetMinorVersion();
 	printf("GL: %i.%i\n", major, minor);

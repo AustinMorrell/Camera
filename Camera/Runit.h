@@ -18,6 +18,7 @@ public:
 	bool Update() override;
 	void Draw() override;
 	void Stop() override;
+	mat4 p_ViewMatrix;
 
 private:
 	FlyCamera Cam;
