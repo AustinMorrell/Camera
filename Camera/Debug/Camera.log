@@ -1,6 +1,8 @@
-﻿  Gizmos.cpp
-  Source.cpp
+﻿  Runit.cpp
+  Main.cpp
+  Camera.cpp
   Generating Code...
-  gl_core_4_4.c
-  Camera.vcxproj -> C:\Users\Austin.Morrell.AIE\Desktop\Camera\Debug\Camera.exe
-  Camera.vcxproj -> C:\Users\Austin.Morrell.AIE\Desktop\Camera\Debug\Camera.pdb (Partial PDB)
+c:\users\austin.morrell.aie\desktop\camera\camera\camera.cpp(21): error C4716: 'Camera::getWorldTransform': must return a value
+c:\users\austin.morrell.aie\desktop\camera\camera\camera.cpp(26): error C4716: 'Camera::getView': must return a value
+c:\users\austin.morrell.aie\desktop\camera\camera\camera.cpp(36): error C4716: 'Camera::getProjectionView': must return a value
+c:\users\austin.morrell.aie\desktop\camera\camera\camera.cpp(31): error C4716: 'Camera::getProjection': must return a value
