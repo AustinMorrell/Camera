@@ -74,7 +74,10 @@ bool App::Update()
 {
 	while (glfwWindowShouldClose(window) == false && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
 	{
-		
+		pastTime = newTime;
+		newTime = glfwGetTime();
+		DeltaTime = newTime - pastTime;
+		Cam.update(DeltaTime);
 		return true;
 	}
 	return false;

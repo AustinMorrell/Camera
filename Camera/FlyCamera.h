@@ -7,5 +7,5 @@ private:
 	vec3 up;
 public:
 	void setSpeed(float speed);
-	void update(float deltaTime);
+	void update(double deltaTime);
 };

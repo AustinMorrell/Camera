@@ -19,10 +19,11 @@ public:
 	void Draw() override;
 	void Stop() override;
 	mat4 p_ViewMatrix;
-
+	double DeltaTime;
 private:
 	FlyCamera Cam;
-
+	double pastTime = 0;
+	double newTime;
 	mat4 view;
 	mat4 projection;
 
