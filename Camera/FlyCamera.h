@@ -3,6 +3,7 @@
 class FlyCamera : public Camera
 {
 private:
+	double thata;
 	float speed;
 	vec3 up;
 public:

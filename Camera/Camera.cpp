@@ -48,6 +48,7 @@ void FlyCamera::setSpeed(float speed)
 
 void FlyCamera::update(double deltaTime)
 {
+	mat4 Rotation, Scale, Trans = mat4(1);
 	GLFWwindow* wind = glfwGetCurrentContext();
 
 	float f_speed = glfwGetKey(wind, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ? deltaTime * speed * 2 : deltaTime * speed;
@@ -77,7 +78,7 @@ void FlyCamera::update(double deltaTime)
 		worldTransform[3] -= getWorldTransform()[1] * f_speed;
 	}
 
-	if (glfwGetMouseButton(wind, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS)
+	if (glfwGetMouseButton(wind, GLFW_MOUSE_BUTTON_LEFT))
 	{
 		double preMposX = 0, preMposY = 0;
 
@@ -90,23 +91,24 @@ void FlyCamera::update(double deltaTime)
 		preMposX = MposX;
 		preMposY = MposY;
 
-		mat4 Rotation = mat4(1);
-
 		if (deltaY != 0)
 		{
-			Rotation[1][1] = cos(deltaY);
-			Rotation[1][2] = -sin(deltaY);
-			Rotation[2][1] = sin(deltaY);
-			Rotation[2][2] = cos(deltaY);
+			thata = deltaY;
+			Rotation[1][1] = cos(thata);
+			Rotation[1][2] = -1 * sin(thata);
+			Rotation[2][1] = sin(thata);
+			Rotation[2][2] = cos(thata);
 		}
 
 		if (deltaX != 0)
 		{
-			Rotation[0][0] = cos(deltaX);
-			Rotation[0][2] = sin(deltaX);
-			Rotation[2][0] = -sin(deltaX);
-			Rotation[2][2] = cos(deltaX);
+			thata = deltaX;
+			Rotation[0][0] = cos(thata);
+			Rotation[0][2] = sin(thata);
+			Rotation[2][0] = -1 * sin(thata);
+			Rotation[2][2] = cos(thata);
 		}
+		//worldTransform = glm::inverse(Trans * Rotation * Scale);
 	}
 	
 	getProjectionView();
