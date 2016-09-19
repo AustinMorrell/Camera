@@ -78,38 +78,80 @@ void FlyCamera::update(double deltaTime)
 		worldTransform[3] -= getWorldTransform()[1] * f_speed;
 	}
 
-	if (glfwGetMouseButton(wind, GLFW_MOUSE_BUTTON_LEFT))
-	{
-		double preMposX = 0, preMposY = 0;
+	//if (glfwGetMouseButton(wind, GLFW_MOUSE_BUTTON_LEFT))
+	//{
+	//	double preMposX = 0, preMposY = 0;
 
-		glfwGetCursorPos(wind, &preMposX, &preMposY);
+	//	glfwGetCursorPos(wind, &preMposX, &preMposY);
 
-		double MposX = 0, MposY = 0;
-		glfwGetCursorPos(wind, &MposX, &MposY);
+	//	double MposX = 0, MposY = 0;
+	//	glfwGetCursorPos(wind, &MposX, &MposY);
 
-		double deltaX = MposX - preMposX, deltaY = MposY - preMposY;
-		preMposX = MposX;
-		preMposY = MposY;
+	//	double deltaX = MposX - preMposX, deltaY = MposY - preMposY;
+	//	preMposX = MposX;
+	//	preMposY = MposY;
 
-		if (deltaY != 0)
-		{
-			thata = deltaY;
-			Rotation[1][1] = cos(thata);
-			Rotation[1][2] = -1 * sin(thata);
-			Rotation[2][1] = sin(thata);
-			Rotation[2][2] = cos(thata);
+	//	if (deltaY != 0)
+	//	{
+	//		thata = deltaY;
+	//		Rotation[1][1] = cos(thata);
+	//		Rotation[1][2] = -1 * sin(thata);
+	//		Rotation[2][1] = sin(thata);
+	//		Rotation[2][2] = cos(thata);
+	//	}
+
+	//	if (deltaX != 0)
+	//	{
+	//		thata = deltaX;
+	//		Rotation[0][0] = cos(thata);
+	//		Rotation[0][2] = sin(thata);
+	//		Rotation[2][0] = -1 * sin(thata);
+	//		Rotation[2][2] = cos(thata);
+	//	}
+	//	//worldTransform = glm::inverse(Trans * Rotation * Scale);
+	//}
+
+	static bool sbMouseButtonDown = false;
+	if (glfwGetMouseButton(wind, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS) {
+
+		static double siPrevMouseX = 0;
+		static double siPrevMouseY = 0;
+
+		if (sbMouseButtonDown == false) {
+			sbMouseButtonDown = true;
+			glfwGetCursorPos(wind, &siPrevMouseX, &siPrevMouseY);
 		}
 
-		if (deltaX != 0)
-		{
-			thata = deltaX;
-			Rotation[0][0] = cos(thata);
-			Rotation[0][2] = sin(thata);
-			Rotation[2][0] = -1 * sin(thata);
-			Rotation[2][2] = cos(thata);
+		double mouseX = 0, mouseY = 0;
+		glfwGetCursorPos(wind, &mouseX, &mouseY);
+
+		double iDeltaX = mouseX - siPrevMouseX;
+		double iDeltaY = mouseY - siPrevMouseY;
+
+		siPrevMouseX = mouseX;
+		siPrevMouseY = mouseY;
+
+		glm::mat4 mMat;
+
+		// pitch
+		if (iDeltaY != 0) {
+			mMat = glm::axisAngleMatrix(m_transform[0].xyz(), (float)-iDeltaY / 150.0f);
+			m_transform[0] = mMat * m_transform[0];
+			m_transform[1] = mMat * m_transform[1];
+			m_transform[2] = mMat * m_transform[2];
 		}
-		//worldTransform = glm::inverse(Trans * Rotation * Scale);
+
+		// yaw
+		if (iDeltaX != 0) {
+			mMat = glm::axisAngleMatrix(m_up, (float)-iDeltaX / 150.0f);
+			m_transform[0] = mMat * m_transform[0];
+			m_transform[1] = mMat * m_transform[1];
+			m_transform[2] = mMat * m_transform[2];
+		}
 	}
-	
+	else {
+		sbMouseButtonDown = false;
+	}
+
 	getProjectionView();
 }
