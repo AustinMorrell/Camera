@@ -1,0 +1,12 @@
+﻿  Camera.cpp
+Camera.cpp(103): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Camera.cpp(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+  Runit.cpp
+  Gizmos.cpp
+  gl_core_4_4.c
+  Generating code
+  All 121 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Camera.vcxproj -> C:\Users\Austin.Morrell.AIE\Desktop\Camera\Release\Camera.exe
+  Camera.vcxproj -> C:\Users\Austin.Morrell.AIE\Desktop\Camera\Release\Camera.pdb (Full PDB)
